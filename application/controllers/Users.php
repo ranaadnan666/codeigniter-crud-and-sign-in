@@ -176,30 +176,20 @@ ini_set('smtp_crypto', 'tls');  // Use 'tls' or 'ssl' if required
         $this->form_validation->set_rules('email', 'Email', 'required|');
         $this->form_validation->set_rules('password', 'Password', 'required|');
         $this->form_validation->set_rules('confirm_password', 'Confirm Password', 'required|matches[password]');
-
-        // if ($this->form_validation->run() == FALSE) {
-        //     // $this->load->view('reset_password');
-        //     echo "<script>alert('fill correct data');</script>";
-
-        // } else {
                 $token = $this->input->post('token');
-                // $email = $this->input->post('email');
                 $user = $this->User_modal->get_user_by_token($token);
 
             if ($user) {
-                // Update the password in the database and clear the token
                 // confirm_password
                 $password = $this->input->post('password');
                 $confirm_password = $this->input->post('confirm_password');
                 $this->User_modal->update_password($user->Id, $password,$confirm_password);
                 $this->User_modal->clear_reset_token($user->Id);
-                // echo "<script>alert('password_reset_success.');</script>";
                 redirect(base_url() . 'index.php/read/index');
             } else {
                 // Token is invalid
                 $data['error_message'] = 'Invalid token.';
                 $this->load->view('reset_password_error', $data);
-                // echo "<script>alert('reset_password_error');</script>";
 
             }
         // }
