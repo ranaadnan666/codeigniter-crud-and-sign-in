@@ -49,6 +49,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
+$config['base_url'] = 'http://http://localhost/codeIgniter/';
+
 $route['default_controller'] = 'read';
 $route['register'] = 'User/reg_user';
 $route['edit/index/(:any)'] = 'edit/index/$1';

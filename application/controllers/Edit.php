@@ -19,7 +19,6 @@ class Edit extends CI_Controller {
         $this->form_validation->set_rules('city', 'city', 'required');
 
         if ($this->form_validation->run() == false) {
-            // Form validation failed
             $this->load->view('edit', $data);
         } else {
             // Form validation passed
@@ -30,7 +29,6 @@ class Edit extends CI_Controller {
             $formArray['city'] = $this->input->post('city');
             $this->User_modal->update_user($id, $formArray);
    // Add this line to check the posted data
-   var_dump($_POST);
             // Set a flash message for success
 			// $this->session->set_flashdata('success', 'Records updated successfully');
 
@@ -59,8 +57,7 @@ class Edit extends CI_Controller {
             $formArray['city'] = $this->input->post('city');
             $this->User_modal->update_user($id, $formArray);
     
-            $response = array('success' => true, 'message' => 'Record updated successfully');
-           // echo json_encode($response);
+            // $response = array('success' => true, 'message' => 'Record updated successfully');
         }
     }
     

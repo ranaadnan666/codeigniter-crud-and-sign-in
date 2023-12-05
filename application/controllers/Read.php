@@ -11,9 +11,5 @@ class Read extends CI_Controller {
 		$this->load->view('readview',$data);
  
 	}
-
-	public function Edit(){
-		print_r('data is here');
-	}
 	
 }

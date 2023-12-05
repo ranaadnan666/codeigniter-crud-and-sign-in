@@ -28,7 +28,6 @@ class Create extends CI_Controller {
 	public function index()
 	{
 			$this->load->view('ajaxpost');
-			// $this->form_validation->set_error_delimiters('div style="color:red"','</div>');
 	}
 	public function add_data(){
 		$this->form_validation->set_rules('name','name','required');
@@ -43,8 +42,6 @@ class Create extends CI_Controller {
 			//Save data successfully
 			$post  =  $this->input->post();
 			$this->user_modal->add_data($post);
-			// echo "<pre>";
-			// print_r($post); 
 		}
 	}
 	public function cr_data() {

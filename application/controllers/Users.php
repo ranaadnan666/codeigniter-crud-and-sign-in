@@ -41,19 +41,15 @@ class Users extends CI_Controller {
         } else {
             // Validation passed, register the user
 			// $user_input_password = $this->input->post('password');
-            // $hashed_password = password_hash($user_input_password, PASSWORD_BCRYPT);
+            $hashed_password = password_hash($this->input->post('password'), PASSWORD_BCRYPT);
             $data = array(
                 'user_name' => $this->input->post('user_name'),
                 'email' => $this->input->post('email'),
-				'password' =>  $this->input->post('password'),
+				'password' =>$hashed_password 
             );
 
             $this->User_modal->Register($data);
-          echo "<script>alert('Register successful!');</script>";
             redirect(base_url() . 'index.php/read/index');
-
-            // Redirect to a success page or login page
-            // redirect('login');
         }
     }
 
@@ -75,12 +71,12 @@ class Users extends CI_Controller {
             $this->load->view('login');
 
         } else {
-						$password = $this->input->post('password');
+            $hashed_password = password_hash($this->input->post('password'), PASSWORD_BCRYPT);
 						$email = $this->input->post('email');
 						
 						$data = array(
 							'email' => $this->input->post('email'),
-							'password' => $password,
+							'password' => $hashed_password,
 						);
 						
 						$status = $this->User_modal->checkpassword($password,$email);
@@ -91,24 +87,14 @@ class Users extends CI_Controller {
 								'user_name' => $status->user_name,
 								'password' => $status->password
 							);
-							
-							// $this->session->set_userdata('UserLoginSession',$session_data);
-							echo "<script>alert('Login successful!');</script>";
+						
 							redirect(base_url() . 'index.php/read/index');
-							// echo"hello world"
 
 						}
 						else{
-							// $this->session->setflashdata('error','email Or password is wrong');
-							// redirect(base_url() . 'index.php/Users/login');
-							echo "<script>alert('Please enter correct data.');</script>";
 
 						}
-						// else{
-						// 	$this->session->set_flashdata('error','fill all required fields');
-						// }
-						// Redirect to a success page or login page
-						// redirect('login');
+			
         }
 	   }
 
@@ -207,7 +193,7 @@ ini_set('smtp_crypto', 'tls');  // Use 'tls' or 'ssl' if required
                 $confirm_password = $this->input->post('confirm_password');
                 $this->User_modal->update_password($user->Id, $password,$confirm_password);
                 $this->User_modal->clear_reset_token($user->Id);
-                echo "<script>alert('password_reset_success.');</script>";
+                // echo "<script>alert('password_reset_success.');</script>";
                 redirect(base_url() . 'index.php/read/index');
             } else {
                 // Token is invalid

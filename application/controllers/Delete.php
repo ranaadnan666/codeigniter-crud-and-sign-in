@@ -21,9 +21,9 @@ class Delete extends CI_Controller {
     
             // Return a response (you can customize this based on your needs)
             if ($result) {
-                echo json_encode(array('success' => true));
+                // echo json_encode(array('success' => true));
             } else {
-                echo json_encode(array('success' => false, 'message' => 'Failed to delete data'));
+                // echo json_encode(array('success' => false, 'message' => 'Failed to delete data'));
             }
         }
     

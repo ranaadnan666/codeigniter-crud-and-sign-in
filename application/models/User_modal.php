@@ -71,8 +71,7 @@ public function get_user_by_token($token) {
 
     if ($query->num_rows() > 0) {
         $user = $query->row();
-        print_r($user);
-        return $user;
+        // print_r($user);
     } else {
         echo "No user found with the given token.";
         return false;
